@@ -17,6 +17,9 @@ public class Gene {
  {
 	 return express;
  }
- 
+ public String toString(){
+	return "Name of Gene:"+name+"  Expressed:"+express +"\n";
+	 
+ }
  
 }

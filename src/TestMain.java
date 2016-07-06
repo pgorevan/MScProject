@@ -2,6 +2,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.Stack;
 
 public class TestMain {
 
@@ -19,6 +20,7 @@ public class TestMain {
 		for(int i=0; i<5; i++)
 		{
 			Gene temp = new Gene(""+i,r.nextBoolean());
+			temp.toString();
 			allGenes[i] = temp;
 			geneSet.add(temp);
 		}
@@ -39,11 +41,16 @@ public class TestMain {
 		
 		ExpressionTreeNode[] booleanUpdateFunction = UpdateFunctionGenerator.convertToExpressionTree(resultFunction, geneSet);
 		
+		
+		ExpressionTree tree = new ExpressionTree();
+		tree.createTreeFirst(booleanUpdateFunction);
+		System.out.println("Tree Created");
+		Boolean test123 = tree.root.evaluate();
+		System.out.println("Evaluvate for to"+test123);
 		for(ExpressionTreeNode n :booleanUpdateFunction)
 		{
 			System.out.print(" "+n.toString()+" ");
 		}
-		
 	
 	}
 	
