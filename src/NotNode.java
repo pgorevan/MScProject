@@ -1,7 +1,7 @@
 
 public class NotNode extends ExpressionTreeNode {
 	
-	private ExpressionTreeNode child;
+	public ExpressionTreeNode child;
 
 	@Override
 	public boolean evaluate() {

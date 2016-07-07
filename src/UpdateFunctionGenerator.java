@@ -16,6 +16,7 @@ public class UpdateFunctionGenerator {
 		int range = possibleNoActivators;
 		Random r = new Random();
 		int noActivators = r.nextInt(range) + min;
+		System.out.println();
 		System.out.println(noActivators);
 		
 		int noOfOperators = noActivators-1;
@@ -58,8 +59,10 @@ public class UpdateFunctionGenerator {
 	public static boolean isValidExpression(int[] nodes) {
 	    int nonleaves = 0, leaves = 0, i = 0;
 	    for (i=0; i<nodes.length && nonleaves + 1 != leaves; i++)
+	    {	
 	        if (nodes[i]==0) leaves++;
 	        else nonleaves++;
+	    }  
 	    return nonleaves + 1 == leaves && i == nodes.length;
 	}
 	
@@ -100,7 +103,6 @@ public class UpdateFunctionGenerator {
 	{
 		int numberOfGenesAvailable = GeneVariables.size();
 		int selected = new Random().nextInt(numberOfGenesAvailable);
-		System.out.println("The number of iteratiions performed is "+selected);
 		int i = 0;
 		Iterator<Gene> iterator = GeneVariables.iterator();
 		while (iterator.hasNext())
