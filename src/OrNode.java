@@ -1,7 +1,6 @@
 
 public class OrNode extends ExpressionTreeNode {
-	public ExpressionTreeNode leftChild;
-	public ExpressionTreeNode rightChild;
+
 	@Override
 	public boolean evaluate() {
 		// TODO Auto-generated method stub

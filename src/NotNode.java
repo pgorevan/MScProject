@@ -1,17 +1,16 @@
 
 public class NotNode extends ExpressionTreeNode {
 	
-	public ExpressionTreeNode child;
 
 	@Override
 	public boolean evaluate() {
 		// TODO Auto-generated method stub
-		return !child.evaluate();
+		return !rightChild.evaluate();
 	}
 	
 	public NotNode(ExpressionTreeNode in)
 	{
-		child = in;
+		rightChild =in;
 	}
 
 	@Override

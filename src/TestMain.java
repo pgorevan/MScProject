@@ -18,33 +18,22 @@ public class TestMain {
 			temp.toString();
 			geneSet.add(temp);
 		}
+		Gene temp2 = new Gene("Gene1",r.nextBoolean());
+		Gene temp3 = new Gene("Gene2",r.nextBoolean());
+		VarNode v1 = new VarNode(temp2);
+		VarNode v2 = new VarNode(temp3);
+		OrNode or = new OrNode(v1,v2);
+	
 		
-		int [] ActivatorFunction = UpdateFunctionGenerator.UFG(3, 3, geneSet);
-		int [] RepressorFunction = UpdateFunctionGenerator.UFG(3, 3, geneSet);
-		ExpressionTreeNode[] ActivatorHalf = UpdateFunctionGenerator.convertToExpressionTree(ActivatorFunction, geneSet);
-		ExpressionTreeNode[] RepressorHalf = UpdateFunctionGenerator.convertToExpressionTree(RepressorFunction, geneSet);
-		ExpressionTree treeOne = new ExpressionTree();
-		treeOne.createTreeFirst(ActivatorHalf);
-		ExpressionTree treeTwo = new ExpressionTree();
-		treeTwo.createTreeFirst(RepressorHalf);
-		ExpressionTree updateFunction = new ExpressionTree();
-		NotNode not = new NotNode(treeTwo.root);
-		AndNode and = new AndNode(treeOne.root,not);
-		updateFunction.root = and;
+		ExpressionTree function = UpdateFunctionGenerator.createUpdateFunction(3,3,geneSet);
+		
+	
 		
 
-		Boolean test123 = treeOne.root.evaluate();
-		System.out.println("Tree Created and Evaluvated to "+test123);
-		for(ExpressionTreeNode n :ActivatorHalf)
-		{
-			System.out.print(" "+n.toString()+" ");
-		}
-		System.out.print("AND NOT(");
-		for(ExpressionTreeNode n : RepressorHalf)
-		{	
-			System.out.print(" "+n.toString()+" ");
-		}
-		System.out.print(")");
+		Boolean test123 = function.root.evaluate();
+		System.out.println("Tree Created and Evaluated to "+test123);
+		function.print();
+
 	}
 	
 

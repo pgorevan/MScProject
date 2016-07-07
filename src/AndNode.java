@@ -1,7 +1,6 @@
 
 public class AndNode extends ExpressionTreeNode{
-	private  ExpressionTreeNode leftChild = null;
-	private ExpressionTreeNode rightChild = null;
+
 	@Override
 	public boolean evaluate() {
 		// TODO Auto-generated method stub
