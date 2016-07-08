@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -18,17 +19,18 @@ public class TestMain {
 			temp.toString();
 			geneSet.add(temp);
 		}
-		Gene temp2 = new Gene("Gene1",r.nextBoolean());
-		Gene temp3 = new Gene("Gene2",r.nextBoolean());
-		VarNode v1 = new VarNode(temp2);
-		VarNode v2 = new VarNode(temp3);
-		OrNode or = new OrNode(v1,v2);
-	
-		
+		List<Gene> listOfGenes = null;
+		try {
+			GeneFileParser gfp = new GeneFileParser("src/genes.txt");
+			listOfGenes = gfp.getGeneList();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.err.println("Failed to read file");
+		}
+		for(Gene g : listOfGenes){
+			System.out.println(g.toString());
+		}
 		ExpressionTree function = UpdateFunctionGenerator.createUpdateFunction(3,3,geneSet);
-		
-	
-		
 
 		Boolean test123 = function.root.evaluate();
 		System.out.println("Tree Created and Evaluated to "+test123);

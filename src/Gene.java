@@ -2,12 +2,18 @@
 public class Gene {
  private String name = "AGene";
  private boolean express;
+ private ExpressionTree updateFunction;
  
  Gene (String name, boolean express)
  {
 	 this.name = name;
 	 this.express = express;
-	 System.out.println("Gene "+name+" Expressed? "+express);
+
+ }
+ 
+ public void setUpdateFunction(ExpressionTree function)
+ {
+	 updateFunction= function;
  }
  
  public String getName(){
@@ -18,8 +24,9 @@ public class Gene {
 	 return express;
  }
  public String toString(){
-	return "Name of Gene:"+name+"  Expressed:"+express +"\n";
+	return name+"  Expressed:"+express;
 	 
  }
+ 
  
 }

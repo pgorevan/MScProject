@@ -2,7 +2,7 @@
  *
  * @author Patrick Gorevan.
  */
-import java.util.HashSet;
+
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
@@ -11,46 +11,49 @@ public class UpdateFunctionGenerator {
 
 	/** Generates a random boolean expression in binary tree form from a set of genes
 	 * 
-	 * @param possibleNoActivators		The number of possible activator genes the function can use
-	 * @param possiblenoSuppressors		The number of possible suppressor genes the function can use
-	 * @return updateFunction			Binary tree representing a boolean function of the form suppressors AND NOT (activators)
+	 * @param noPossActivators		The number of possible activator genes the function can use
+	 * @param noPossSupressors		The number of possible suppressor genes the function can use
+	 * @return updateFunction		Binary tree representing a boolean function of the form suppressors AND NOT (activators)
 	 */
-	public static ExpressionTree createUpdateFunction(int possibleNoActivators, int possiblenoSuppressors,Set<Gene> GeneVariables){
+	public static ExpressionTree createUpdateFunction(int noPossActivators, int noPossSupressors,Set<Gene> GeneVariables){
 		
 		
-		ExpressionTree updateFunction = new ExpressionTree();
-		ExpressionTree treeOne = new ExpressionTree();
-		ExpressionTree treeTwo = new ExpressionTree();
+		ExpressionTree updateFunction = new ExpressionTree(); // final update function
+		ExpressionTree activatorTree = new ExpressionTree(); // activator half of the function
+		ExpressionTree suppressorTree = new ExpressionTree(); // suppressor half of the function
+		
 		if(!GeneVariables.isEmpty())
 		{
-		int [] ActivatorFunction = UFG(possibleNoActivators, GeneVariables);	
-		ExpressionTreeNode[] ActivatorHalf = UpdateFunctionGenerator.convertToExpressionTree(ActivatorFunction, GeneVariables);
-		treeOne.createTreeFirst(ActivatorHalf);
+		// Create a array representing the preorder traversal of the activator subtree
+		int [] ActivatorFunction = UFG(noPossActivators, GeneVariables);	
+		ExpressionTreeNode[] ActivatorHalf = convertToExpressionTree(ActivatorFunction, GeneVariables);
+		// Convert the array to a booelan expression tree
+		activatorTree.createTreeFirst(ActivatorHalf);
 		}
 		if(!GeneVariables.isEmpty())
 		{
-		int [] RepressorFunction = UFG(possiblenoSuppressors, GeneVariables);
-		ExpressionTreeNode[] RepressorHalf = UpdateFunctionGenerator.convertToExpressionTree(RepressorFunction, GeneVariables);
-		treeTwo.createTreeFirst(RepressorHalf);
+			// Create a array representing the preorder traversal of the supressor subtree	
+		int [] RepressorFunction = UFG(noPossSupressors, GeneVariables);
+		ExpressionTreeNode[] RepressorHalf = convertToExpressionTree(RepressorFunction, GeneVariables);
+		suppressorTree.createTreeFirst(RepressorHalf);
 		}
 		//If there activators and no suppressors  update function is the activator tree
-		if(!treeOne.isEmpty()&&treeTwo.isEmpty())
+		if(!activatorTree.isEmpty()&&suppressorTree.isEmpty())
 		{
-			updateFunction.root = treeOne.root;
+			updateFunction.root = activatorTree.root;
 		}
-		
 		//If there are suppressors present but no activators update function consists of the repressor tree
-		if(treeOne.isEmpty()&&!treeTwo.isEmpty())
+		if(activatorTree.isEmpty()&&!suppressorTree.isEmpty())
 		{
-			NotNode not = new NotNode(treeTwo.root);
-			treeTwo.root = not;
-			updateFunction.root=treeTwo.root;
+			NotNode not = new NotNode(suppressorTree.root);
+			suppressorTree.root = not;
+			updateFunction.root=suppressorTree.root;
 		}
-		// If there are both activators and suppressors join the two parts together to form the update function
-		if(!treeOne.isEmpty()&&!treeTwo.isEmpty())
+		// If there are both activators and suppressors join the subtrees together to form the update function
+		if(!activatorTree.isEmpty()&&!suppressorTree.isEmpty())
 		{
-			NotNode not = new NotNode(treeTwo.root);
-			AndNode and = new AndNode(treeOne.root,not);
+			NotNode not = new NotNode(suppressorTree.root);
+			AndNode and = new AndNode(activatorTree.root,not);
 			updateFunction.root = and;
 		}
 
@@ -59,63 +62,59 @@ public class UpdateFunctionGenerator {
 
 	}
 	
-	//Creates an array representing the preorder traversal of a binary tree 
-	//where 1 is a internal node and 0 is a leaf node
-	private static  int []  UFG( int NoBoolVariables,Set<Gene> GeneVariables)
+	/** Creates an array representing the preorder traversal of a binary tree 
+	 *  where 1 is a operator node and 0 is a leaf node(VarNode)
+	 * 
+	 * @param noPossVars		Number of variables ie leaf nodes of the tree
+	 * @param GeneVariables			The set of genes 
+	 * @return arrayRepOfTree		An int array containing the preorder traversal of a binary tree
+	 */	
+	private static  int []  UFG( int noPossVars,Set<Gene> GeneVariables)
 	{
-		if(NoBoolVariables>GeneVariables.size())
-			NoBoolVariables=GeneVariables.size();
-		
-		int min = 1;
-		int range = NoBoolVariables;
-		Random r = new Random();
-		int noActivators = r.nextInt(range) + min;
-		System.out.println();
-		System.out.println(noActivators);
-		
-		int noOfOperators = noActivators-1;
-		int[] arrayRepOfTree= new int[noActivators+noOfOperators];
-		arrayRepOfTree = updateFunction(noActivators);
-		
-		for(int i : arrayRepOfTree)
+		//Check if the number of possible variables is valid
+		if(noPossVars>GeneVariables.size())
+			noPossVars=GeneVariables.size();
+		int noVariables = selectNoVariables(noPossVars);
+		int[] arrayRepOfExp;
+		do
 		{
-			System.out.print(i);
-		}
-		return arrayRepOfTree;
-		
+			if(noVariables==1)
+			{
+				arrayRepOfExp = new int[1];
+				arrayRepOfExp[0] =0;
+				return arrayRepOfExp;
+			}
+				
+			Random r = new Random();
+			arrayRepOfExp = new int[2*noVariables-1];
+			for(int i=0;i<arrayRepOfExp.length;i++)
+			{
+				if(r.nextBoolean())
+					arrayRepOfExp[i] = 1;
+				else
+					arrayRepOfExp[i] = 0;
+			}
+		}while(!isValidExpression(arrayRepOfExp));
+		return arrayRepOfExp;
 
-		
 	}
 	
-	
-	
-	
-	
-	
-	private static int[] updateFunction(int noVariables)
+	private static  int selectNoVariables( int noPossVar)
 	{
-		if(noVariables==1)
-		{
-			int[] arrayRepOfExp = new int[1];
-			arrayRepOfExp[0] =0;
-			return arrayRepOfExp;
-		}
-			
+
+		int min = 1;
+		int range = noPossVar;
 		Random r = new Random();
-		int[] arrayRepOfExp = new int[2*noVariables-1];
-		for(int i=0;i<arrayRepOfExp.length;i++)
-		{
-			if(r.nextBoolean())
-				arrayRepOfExp[i] = 1;
-			else
-				arrayRepOfExp[i] = 0;
-		}
-		while(!isValidExpression(arrayRepOfExp))
-		{
-			arrayRepOfExp=updateFunction(noVariables);
-		}
-		return arrayRepOfExp;
-		}
+		int noVariables = r.nextInt(range) + min;
+		return noVariables;
+	}
+	
+	/** Checks whether a given array is a valid preorder traversal
+	 * 
+	 * @param nodes array of 1 and 0s representing internal nodes(1s) and leafs(0s)
+
+	 * @return Boolean array is valid or not		
+	 */		
 	public static boolean isValidExpression(int[] nodes) {
 	    int nonleaves = 0, leaves = 0, i = 0;
 	    for (i=0; i<nodes.length && nonleaves + 1 != leaves; i++)
@@ -159,6 +158,12 @@ public class UpdateFunctionGenerator {
 		
 	}
 	
+	/** Randomly selects a gene  from a set of genes
+	 * 
+	 * @param GeneVariables	Set of genes the update function can use
+
+	 * @return g  a Gene		
+	 */
 	private static Gene SelectGene(Set<Gene> GeneVariables)
 	{
 		int numberOfGenesAvailable = GeneVariables.size();
@@ -174,13 +179,10 @@ public class UpdateFunctionGenerator {
 				return g;
 			
 			}
-			Gene g = iterator.next();
+			iterator.next();
 			i++;
 		}
 		return null;
 		
 	}
-	
-	
-	
 }
