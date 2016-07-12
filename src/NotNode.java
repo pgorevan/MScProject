@@ -19,5 +19,9 @@ public class NotNode extends ExpressionTreeNode {
 		return "NOT";
 	}
 	
+	public void setNode(ExpressionTreeNode nodeIn){
+		rightChild = nodeIn;
+	}
+	
 
 }

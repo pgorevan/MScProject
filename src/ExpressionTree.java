@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.Stack;
 
 public class ExpressionTree {
@@ -19,13 +20,15 @@ public class ExpressionTree {
 		
 	}
 	
-	public void print(){
-		inOrderIter(root);
+	public String print(){
+		String str = "";
+		String  result = inOrderIter(root,str);
+		return result;
 	}
-	private void inOrderIter(ExpressionTreeNode root) {  
+	private String inOrderIter(ExpressionTreeNode root, String output) {  
 		  
 		  if(root == null)  
-		   return;  
+		   return output;  
 		  
 		  Stack<ExpressionTreeNode> s = new Stack<ExpressionTreeNode>();  
 		  ExpressionTreeNode currentNode=root;  
@@ -37,8 +40,7 @@ public class ExpressionTree {
 
 			   s.push(currentNode);  
 		    currentNode=currentNode.leftChild; 
-		    if (!(currentNode instanceof VarNode))
-	    		System.out.print("(");
+
 		    
 		   }  
 		   else  
@@ -46,15 +48,13 @@ public class ExpressionTree {
 			   
 			   ExpressionTreeNode n=s.pop();
 
-		    System.out.print(n.toString()+" ");
-		    System.out.print(")");
-
-
+		    output = output+n.toString()+" ";
 		    currentNode=n.rightChild;
 		    
 	    		
 		   }  
-		  }  
+		  }
+		return output;  
 		 }
 
 
@@ -78,10 +78,14 @@ public class ExpressionTree {
 			 ((OrNode) temp).setLeftNode(CreateTree(preorder,myindex,temp.leftChild));
 			 ((OrNode) temp).setRightNode(CreateTree(preorder,myindex,temp.rightChild));
 		}
-		else
+		else if(preorder[i] instanceof AndNode)
 		{
 			((AndNode) temp).setLeftNode(CreateTree(preorder,myindex,temp.leftChild));
 			 ((AndNode) temp).setRightNode(CreateTree(preorder,myindex,temp.rightChild));
+		}
+		else
+		{
+			((NotNode) temp).setNode(CreateTree(preorder,myindex,temp.rightChild));
 		}
 		
 		
@@ -89,8 +93,46 @@ public class ExpressionTree {
 		return temp;
 		
 
+	
+		
+		
+
 	}
 	
+	public Iterator<ExpressionTreeNode> iterator(){
+		return new UDFIterator();
+		
+	}
+	class UDFIterator implements Iterator<ExpressionTreeNode>{
+		Stack<ExpressionTreeNode> stack;
+		
+		public UDFIterator()
+		{
+			ExpressionTreeNode currentNode = root;
+			stack = new Stack<ExpressionTreeNode>();
+			while(currentNode!=null){
+				stack.push(currentNode);
+				currentNode = currentNode.leftChild;
+			}
+		}
+		public boolean hasNext(){
+			return !stack.isEmpty();
+		}
+		public ExpressionTreeNode next(){
+			ExpressionTreeNode node = stack.pop();
+			if(node.rightChild!=null){
+				ExpressionTreeNode temp  = node.rightChild;
+				while(temp !=null){
+					stack.push(temp);
+					temp = temp.leftChild;
+				}
+					
+			}
+			return node;	
+		}
+		
+	}
+
 	
  class Index{
 	 int index = 0;

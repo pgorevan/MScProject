@@ -23,6 +23,9 @@ public class Gene {
  {
 	 return express;
  }
+ public ExpressionTree getUpdateFunction(){
+	 return updateFunction;
+ }
  public String toString(){
 	return name+"  Expressed:"+express;
 	 
