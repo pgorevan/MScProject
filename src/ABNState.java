@@ -19,10 +19,11 @@ public class ABNState {
 			{
 				ExpressionTree updateFunction = g.getUpdateFunction();
 				boolean result = updateFunction.root.evaluate();
+				g.setExpressed(result);
+				System.out.println("Gene Updated");
 			}	
 		}
 		
-
 		return null;
 	}
 	

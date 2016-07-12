@@ -1,13 +1,13 @@
 
 public class Gene {
  private String name = "AGene";
- private boolean express;
+ private boolean expressed;
  private ExpressionTree updateFunction;
  
  Gene (String name, boolean express)
  {
 	 this.name = name;
-	 this.express = express;
+	 this.expressed = express;
 
  }
  
@@ -21,13 +21,19 @@ public class Gene {
  }
  public boolean checkExpression ()
  {
-	 return express;
+	 return expressed;
  }
+ 
+ 
  public ExpressionTree getUpdateFunction(){
 	 return updateFunction;
  }
+ 
+ public void setExpressed(Boolean b){
+	 expressed = b;
+ }
  public String toString(){
-	return name+"  Expressed:"+express;
+	return name+"  Expressed:"+expressed;
 	 
  }
  

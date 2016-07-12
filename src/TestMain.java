@@ -20,6 +20,8 @@ public class TestMain {
 			String updateFunction = tree.print();
 			System.out.println(g.getName()+" "+updateFunction );
 		}
+		ABNState state = new ABNState(genes,0,1);
+		state.applyGeneUpdateFunction("FOG1");
 
 
 	}

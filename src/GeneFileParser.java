@@ -11,7 +11,9 @@ public class GeneFileParser {
 	
 	public static Gene[] readGeneInputFile(){
 		
-		Gene[] arrayOfGenes= new Gene[11];
+		
+		
+		Gene[] arrayOfGenes= readGeneFile();
 		List<Gene> listOfGenes = new ArrayList<Gene>();
 		ArrayList<ExpressionTreeNode> arrayVersion;
 		FileReader fr = null;
@@ -26,9 +28,8 @@ public class GeneFileParser {
 				String line = sc.nextLine();
 				String[] sections = line.split(",");
 				String geneName = sections[0];
-				Gene g = getOrCreateGene(geneName,listOfGenes);
-				if(!listOfGenes.contains(g))
-					listOfGenes.add(g);
+				Gene g = getGene(geneName,arrayOfGenes);
+
 				String function = sections[1];
 				String[] parts = function.split(" ");
 				
@@ -50,7 +51,7 @@ public class GeneFileParser {
 						arrayVersion.add(temp);
 						break;
 					default:
-						Gene geneVar = getOrCreateGene(s,listOfGenes);
+						Gene geneVar = getGene(s,arrayOfGenes);
 						temp = new VarNode(geneVar);
 						arrayVersion.add(temp);
 					}
@@ -61,17 +62,9 @@ public class GeneFileParser {
 				ExpressionTreeNode[] a = arrayVersion.toArray(new ExpressionTreeNode[arrayVersion.size()]);
 				ExpressionTree t = new ExpressionTree();
 				t.createTreeFirst(a);
-				Iterator iter = t.iterator();
 	
 				g.setUpdateFunction(t);
-				System.out.println("");
-				while(iter.hasNext())
-				{
-					ExpressionTreeNode temp = (ExpressionTreeNode) iter.next();
-					
-					System.out.print(temp.toString()+" ");
-				}
-				System.out.println("");
+
 				arrayOfGenes[indexOfGeneArray++]= g;
 
 			}	
@@ -91,9 +84,57 @@ public class GeneFileParser {
 		
 	}
 	
+	private static Gene[] readGeneFile(){
+		FileReader fr = null;
+		Scanner sc = null;
+		Gene[] geneArray = null;
+		try {
+			fr = new FileReader("src/genes.txt");
+			sc = new Scanner(fr);
+			int noGenes=0;
+			while(sc.hasNext())
+			{
+				noGenes++;
+				sc.next();
+			}
+			geneArray = new Gene[noGenes];
+			
+			sc.close();
+			fr.close();
+			fr = new FileReader("src/genes.txt");
+			sc = new Scanner(fr);
+			int indexOfArray = 0;
+			while(sc.hasNextLine())
+			{	
+
+				String line = sc.nextLine();
+				String[] sections = line.split(",");
+				String geneName = sections[0];
+				String strGeneExpressed = sections[1];
+				Boolean geneExpressed = Boolean.valueOf(strGeneExpressed);
+				Gene g = new Gene(geneName, geneExpressed);
+				geneArray[indexOfArray++] = g;	
+			}
+			fr.close();
+			sc.close();
+			return geneArray;
+				
+			
+			
+			
+			
+			
+		}
+		catch (IOException e){
+			System.err.println("Could not read genes.txt");
+			
+		}
+		return geneArray;
+		
+	}
 	
-	private static Gene  getOrCreateGene(String name,List<Gene> listOfGenes){
-		for(Gene g : listOfGenes)
+	private static Gene  getGene(String name,Gene[] arrayOfGenes){
+		for(Gene g : arrayOfGenes)
 		{
 			if(name.equals(g.getName()))
 				return g;
