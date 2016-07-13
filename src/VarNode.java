@@ -13,7 +13,6 @@ public class VarNode extends ExpressionTreeNode {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return gene.getName();
 	}
 

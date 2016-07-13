@@ -1,6 +1,6 @@
 
 public class Gene {
- private String name = "AGene";
+ private String name;
  private boolean expressed;
  private ExpressionTree updateFunction;
  
@@ -36,6 +36,11 @@ public class Gene {
 	return name+"  Expressed:"+expressed;
 	 
  }
- 
+ public Gene clone(){
+	 Gene clone = new Gene(this.name,this.expressed);
+	 clone.setUpdateFunction(this.updateFunction);
+	return clone;
+	 
+ }
  
 }

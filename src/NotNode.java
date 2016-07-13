@@ -15,7 +15,6 @@ public class NotNode extends ExpressionTreeNode {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "NOT";
 	}
 	

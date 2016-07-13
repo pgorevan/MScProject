@@ -24,7 +24,6 @@ public class AndNode extends ExpressionTreeNode{
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "AND";
 	}
 	
