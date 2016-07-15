@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BooleanNetwork {
 	private Gene[] genes;
@@ -16,29 +17,33 @@ public class BooleanNetwork {
 	public void generateStates()
 	{
 		ABNState state = new ABNState(genes,0,1);
-		System.out.println("Inital State looks like this: "+state.toString());
-		
-		Queue<ABNState>  processStates = new LinkedList<ABNState>();
-		processStates.add(state);
+		listStates.add(state);
+		Stack<ABNState> stack = new Stack<ABNState>();
+		stack.push(state);
 		
 		int depth = 0;
-		while(!processStates.isEmpty()&&depth<10000)
+		while(!stack.isEmpty())
 		{	
-			ABNState next = processStates.remove();
+			ABNState next = stack.pop();
+			next.UpdateGeneState();
 			Gene[] nextGenes = next.getGenes();
+			
 			for(int i=0; i<nextGenes.length;i++){
-				Gene temp = genes[i];
-				ABNState temp1 =state.applyGeneUpdateFunction(temp.getName());
-
-				if(!state.equals(temp1)||!(listStates.contains(temp1)))
+				next.UpdateGeneState();
+				Gene temp = nextGenes[i];
+				ExpressionTree function = temp.getUpdateFunction();
+				boolean functionresult = function.root.evaluate();
+				boolean geneExpressed = temp.checkExpression();
+				
+				if(functionresult!=geneExpressed)
 				{
-					processStates.add(temp1);
-					System.out.println(temp1.toString());
-					
+					ABNState temp1 =next.applyGeneUpdateFunction(temp.getName());
+					boolean stateStored = listStates.contains(temp1);
+					if(!stateStored)
+					{	
+						stack.push(temp1);
 					listStates.add(temp1);
-				}
-				else{
-					System.out.println("Update function not enabled");
+					}
 				}
 				
 				depth++;
@@ -46,8 +51,38 @@ public class BooleanNetwork {
 		
 		}
 		 
-
 		 System.out.println("End"+listStates.size());
+	}
+	
+	public int checkForSteadyStates(){
+		int number = 0;
+
+		boolean b = true;
+		for(ABNState state : listStates)
+		{
+			state.UpdateGeneState();
+			Gene[] genes = state.getGenes();
+
+			b = true;
+			for(int i=0; i<genes.length;i++)
+			{
+				Gene temp = genes[i];
+				ABNState temp1 =state.applyGeneUpdateFunction(temp.getName());
+
+				if(!state.equals(temp1))
+				{
+					b= false;
+				}
+					
+			}
+			if(b)
+			{	
+				System.out.print(state.toString());
+				number++;
+			}
+		}
+		System.out.print("Number of state "+listStates.size());
+		return number;
 	}
 
 }

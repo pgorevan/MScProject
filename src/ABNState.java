@@ -1,15 +1,39 @@
+import java.util.Iterator;
 
 public class ABNState {
 	private int stateID;
 	private Gene[] stateOfGenes;
 	private int time;
+	private boolean[] boolArray;
 	
 	public ABNState(Gene[] initialState,int time, int stateID)
 	{
 		stateOfGenes = initialState;
 		this.time = time ;
 		this.stateID = stateID;
+		boolArray = new boolean[stateOfGenes.length];
+		for(int i= 0;i<stateOfGenes.length;i++)
+		{
+			boolArray[i] = stateOfGenes[i].checkExpression();
+		}
 
+	}
+	
+	public ABNState (boolean[] boolState, Gene[] genes, int time, int stateID)
+	{
+		boolArray = boolState;
+		stateOfGenes = genes;
+		this.time = time;
+		this.stateID= stateID;
+		int i =0;
+		for(Gene g : genes)
+		{
+			boolean b = boolState[i];
+			g.setExpressed(b);
+			i++;
+			
+		}
+			
 	}
 	
 
@@ -20,30 +44,31 @@ public class ABNState {
 	
 	public ABNState applyGeneUpdateFunction(String geneName)
 	{
-		int index = 0;
-		Gene[] successorArray = stateOfGenes.clone();
+		UpdateGeneState();
+		boolean[] nextState = boolArray.clone();
 		for(Gene g : stateOfGenes)
 		{
 			if(g.getName().equals(geneName))
 			{
-				
-				Gene temp = g.clone();
-				successorArray[index] = temp;
+
 				ExpressionTree updateFunction = g.getUpdateFunction();
 				boolean result = updateFunction.root.evaluate();
-				temp.setExpressed(result);
+				int indexOfGene = findGene(geneName);
+				nextState[indexOfGene] = result;
 			}
-			index++;
 		}
-		ABNState successor = new ABNState(successorArray, stateID, stateID);
+
+		ABNState successor = new ABNState(nextState,stateOfGenes, time+1, Counter.counter++);
 		return successor;
 	}
 	
 	public String toString(){
 		String result =""+stateID+time+"\n";
+		int i =0;
 		for(Gene gene : stateOfGenes)
 		{
-			result += gene.getName()+" "+gene.checkExpression()+", "; 
+			result += gene.getName()+","+boolArray[i]+"\n"; 
+			i++;
 		}
 		return result;
 	}
@@ -54,19 +79,41 @@ public class ABNState {
 			return false;
 		ABNState that =(ABNState) input;
 		int i = 0;
-		for(Gene g : stateOfGenes)
+		for(boolean b: boolArray)
 		{
-			boolean b1 = g.checkExpression();
-			Gene other = that.stateOfGenes[i];
-			boolean b2 = other.checkExpression();
-			if(!b1==b2)
+			if(b!=that.boolArray[i])
 				return false;
 			i++;
 		}
-		return true;
+	
+	return true;
 		
 	}
-	
+
+
+	private int findGene(String s)
+	{
+		int i =0;
+		for(Gene g : stateOfGenes)
+		{
+			if(g.getName().equals(s))
+				return i;
+			else
+				i++;
+		}
+		return i;
+	}
+	public void UpdateGeneState()
+	{
+		int i = 0;
+		for(Gene g : stateOfGenes)
+		{
+			boolean b = boolArray[i];
+			g.setExpressed(b);
+			i++;
+			
+		}
+	}
 
 
 }

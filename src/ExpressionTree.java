@@ -2,11 +2,11 @@ import java.util.Iterator;
 import java.util.Stack;
 
 public class ExpressionTree {
-	ExpressionTreeNode root;
+	ExpressionNode root;
 	Index myindex = new Index();
 	
 	
-	public ExpressionTreeNode createTreeFirst( ExpressionTreeNode[] preorder)
+	public ExpressionNode createTreeFirst( ExpressionNode[] preorder)
 	{
 		root = preorder[0];
 		int noOfNodes = preorder.length; 
@@ -25,13 +25,13 @@ public class ExpressionTree {
 		String  result = inOrderIter(root,str);
 		return result;
 	}
-	private String inOrderIter(ExpressionTreeNode root, String output) {  
+	private String inOrderIter(ExpressionNode root, String output) {  
 		  
 		  if(root == null)  
 		   return output;  
 		  
-		  Stack<ExpressionTreeNode> s = new Stack<ExpressionTreeNode>();  
-		  ExpressionTreeNode currentNode=root;  
+		  Stack<ExpressionNode> s = new Stack<ExpressionNode>();  
+		  ExpressionNode currentNode=root;  
 		  
 		  while(!s.empty() || currentNode!=null){  
 		  
@@ -46,7 +46,7 @@ public class ExpressionTree {
 		   else  
 		   {  
 			   
-			   ExpressionTreeNode n=s.pop();
+			   ExpressionNode n=s.pop();
 
 		    output = output+n.toString()+" ";
 		    currentNode=n.rightChild;
@@ -58,13 +58,13 @@ public class ExpressionTree {
 		 }
 
 
-	private ExpressionTreeNode CreateTree(ExpressionTreeNode[] preorder,Index pos,ExpressionTreeNode node)
+	private ExpressionNode CreateTree(ExpressionNode[] preorder,Index pos,ExpressionNode node)
 	{
 		int i = pos.index;
 		if(i==preorder.length)
 			return null;
 		
-		ExpressionTreeNode temp = preorder[i];
+		ExpressionNode temp = preorder[i];
 		pos.index++;
 		if(temp instanceof VarNode)
 		{
@@ -99,17 +99,17 @@ public class ExpressionTree {
 
 	}
 	
-	public Iterator<ExpressionTreeNode> iterator(){
+	public Iterator<ExpressionNode> iterator(){
 		return new UDFIterator();
 		
 	}
-	class UDFIterator implements Iterator<ExpressionTreeNode>{
-		Stack<ExpressionTreeNode> stack;
+	class UDFIterator implements Iterator<ExpressionNode>{
+		Stack<ExpressionNode> stack;
 		
 		public UDFIterator()
 		{
-			ExpressionTreeNode currentNode = root;
-			stack = new Stack<ExpressionTreeNode>();
+			ExpressionNode currentNode = root;
+			stack = new Stack<ExpressionNode>();
 			while(currentNode!=null){
 				stack.push(currentNode);
 				currentNode = currentNode.leftChild;
@@ -118,10 +118,10 @@ public class ExpressionTree {
 		public boolean hasNext(){
 			return !stack.isEmpty();
 		}
-		public ExpressionTreeNode next(){
-			ExpressionTreeNode node = stack.pop();
+		public ExpressionNode next(){
+			ExpressionNode node = stack.pop();
 			if(node.rightChild!=null){
-				ExpressionTreeNode temp  = node.rightChild;
+				ExpressionNode temp  = node.rightChild;
 				while(temp !=null){
 					stack.push(temp);
 					temp = temp.leftChild;

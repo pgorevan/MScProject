@@ -10,12 +10,8 @@ public class GeneFileParser {
 
 	
 	public static Gene[] readGeneInputFile(){
-		
-		
-		
 		Gene[] arrayOfGenes= readGeneFile();
-		List<Gene> listOfGenes = new ArrayList<Gene>();
-		ArrayList<ExpressionTreeNode> arrayVersion;
+		ArrayList<ExpressionNode> arrayVersion;
 		FileReader fr = null;
 		Scanner sc = null;
 		try {
@@ -24,7 +20,7 @@ public class GeneFileParser {
 			int indexOfGeneArray = 0;
 			while(sc.hasNextLine())
 			{	
-				arrayVersion = new ArrayList<ExpressionTreeNode>();
+				arrayVersion = new ArrayList<ExpressionNode>();
 				String line = sc.nextLine();
 				String[] sections = line.split(",");
 				String geneName = sections[0];
@@ -35,7 +31,7 @@ public class GeneFileParser {
 				
 				for(String s: parts)
 				{
-					ExpressionTreeNode temp;
+					ExpressionNode temp;
 					switch(s)
 					{
 					case "AND":
@@ -59,7 +55,7 @@ public class GeneFileParser {
 					
 					
 				}
-				ExpressionTreeNode[] a = arrayVersion.toArray(new ExpressionTreeNode[arrayVersion.size()]);
+				ExpressionNode[] a = arrayVersion.toArray(new ExpressionNode[arrayVersion.size()]);
 				ExpressionTree t = new ExpressionTree();
 				t.createTreeFirst(a);
 	
@@ -104,11 +100,13 @@ public class GeneFileParser {
 			fr = new FileReader("src/genes.txt");
 			sc = new Scanner(fr);
 			int indexOfArray = 0;
+			String[] sections;
 			while(sc.hasNextLine())
 			{	
 
 				String line = sc.nextLine();
-				String[] sections = line.split(",");
+				sections = null;
+				sections = line.split(",");
 				String geneName = sections[0];
 				String strGeneExpressed = sections[1];
 				Boolean geneExpressed = Boolean.valueOf(strGeneExpressed);

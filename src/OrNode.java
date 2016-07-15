@@ -1,23 +1,23 @@
 
-public class OrNode extends ExpressionTreeNode {
+public class OrNode extends ExpressionNode {
 
 	@Override
 	public boolean evaluate() {
 		// TODO Auto-generated method stub
 		return leftChild.evaluate() || rightChild.evaluate();
 	}
-	public OrNode(ExpressionTreeNode l, ExpressionTreeNode r)
+	public OrNode(ExpressionNode l, ExpressionNode r)
 	{
 		leftChild = l;
 		rightChild =r;
 	}
 	
-	public void setLeftNode(ExpressionTreeNode nodeIn){
+	public void setLeftNode(ExpressionNode nodeIn){
 		
 		leftChild = nodeIn;
 	}
 	
-	public void setRightNode(ExpressionTreeNode nodeIn){
+	public void setRightNode(ExpressionNode nodeIn){
 		rightChild = nodeIn;
 	}
 	@Override

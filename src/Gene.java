@@ -29,7 +29,7 @@ public class Gene {
 	 return updateFunction;
  }
  
- public void setExpressed(Boolean b){
+ public void setExpressed(boolean b){
 	 expressed = b;
  }
  public String toString(){

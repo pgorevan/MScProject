@@ -1,5 +1,5 @@
 
-public class VarNode extends ExpressionTreeNode {
+public class VarNode extends ExpressionNode {
 	private Gene gene;
 	
 	
@@ -11,9 +11,17 @@ public class VarNode extends ExpressionTreeNode {
 
 		return gene.checkExpression();
 	}
+	public void setGene(Gene g){
+		gene = g;
+	}
 	@Override
 	public String toString() {
 		return gene.getName();
 	}
+	public Gene getGene(){
+		return gene;
+		
+	}
+	
 
 }

@@ -26,7 +26,7 @@ public class UpdateFunctionGenerator {
 		{
 		// Create a array representing the preorder traversal of the activator subtree
 		int [] ActivatorFunction = UFG(noPossActivators, GeneVariables);	
-		ExpressionTreeNode[] ActivatorHalf = convertToExpressionTree(ActivatorFunction, GeneVariables);
+		ExpressionNode[] ActivatorHalf = convertToExpressionTree(ActivatorFunction, GeneVariables);
 		// Convert the array to a booelan expression tree
 		activatorTree.createTreeFirst(ActivatorHalf);
 		}
@@ -34,7 +34,7 @@ public class UpdateFunctionGenerator {
 		{
 			// Create a array representing the preorder traversal of the supressor subtree	
 		int [] RepressorFunction = UFG(noPossSupressors, GeneVariables);
-		ExpressionTreeNode[] RepressorHalf = convertToExpressionTree(RepressorFunction, GeneVariables);
+		ExpressionNode[] RepressorHalf = convertToExpressionTree(RepressorFunction, GeneVariables);
 		suppressorTree.createTreeFirst(RepressorHalf);
 		}
 		//If there activators and no suppressors  update function is the activator tree
@@ -125,16 +125,16 @@ public class UpdateFunctionGenerator {
 	    return nonleaves + 1 == leaves && i == nodes.length;
 	}
 	
-	public static ExpressionTreeNode[] convertToExpressionTree(int[] a, Set<Gene> GeneVariables)
+	public static ExpressionNode[] convertToExpressionTree(int[] a, Set<Gene> GeneVariables)
 	{
 		
 		Random r = new Random();
-		ExpressionTreeNode[] udfArray = new ExpressionTreeNode[a.length];
+		ExpressionNode[] udfArray = new ExpressionNode[a.length];
 		for(int i =0; i<a.length;i++)
 		{
 			if(a[i]==1)
 			{
-				ExpressionTreeNode temp = null;
+				ExpressionNode temp = null;
 				if(r.nextBoolean())
 				{
 					 temp = new OrNode(null,null);
@@ -148,7 +148,7 @@ public class UpdateFunctionGenerator {
 			else
 			{
 				Gene g = SelectGene(GeneVariables);
-				ExpressionTreeNode varNode = new VarNode(g);
+				ExpressionNode varNode = new VarNode(g);
 				udfArray[i] = varNode;
 			}
 			
