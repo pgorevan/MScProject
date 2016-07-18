@@ -1,4 +1,5 @@
-
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 public class TestMain {
 
@@ -23,6 +24,15 @@ public class TestMain {
 	
 		
 		System.out.println("Number of steady states is"+noSteadystates);
+		try {
+			network.printToFile("States.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 

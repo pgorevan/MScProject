@@ -1,28 +1,42 @@
-import java.util.Iterator;
+/** ABNState encapsulates the information pertaining to a state in a boolean network
+ *
+ * @author Patrick Gorevan.
+ */
 
 public class ABNState {
 	private int stateID;
-	private Gene[] stateOfGenes;
+	private Gene[] geneArray;
 	private int time;
-	private boolean[] boolArray;
+	private boolean[] stateOfGenes;
 	
+	
+	/** Constructor
+	 * @param genes			An array of genes
+	 * @param time			An int representing time stamp of when state was created
+	 * @param stateID		An int for identifying this state;	
+	 */		
 	public ABNState(Gene[] initialState,int time, int stateID)
 	{
-		stateOfGenes = initialState;
+		geneArray = initialState;
 		this.time = time ;
 		this.stateID = stateID;
-		boolArray = new boolean[stateOfGenes.length];
-		for(int i= 0;i<stateOfGenes.length;i++)
+		stateOfGenes = new boolean[geneArray.length];
+		for(int i= 0;i<geneArray.length;i++)
 		{
-			boolArray[i] = stateOfGenes[i].checkExpression();
+			stateOfGenes[i] = geneArray[i].checkExpression();
 		}
 
 	}
-	
+	/** Constructor
+	 * @param boolState		An array of boolean variables
+	 * @param genes			An array of genes
+	 * @param time			An int representing time stamp of when was state created
+	 * @param stateID		An int for identifying this state;	
+	 */	
 	public ABNState (boolean[] boolState, Gene[] genes, int time, int stateID)
 	{
-		boolArray = boolState;
-		stateOfGenes = genes;
+		stateOfGenes = boolState;
+		geneArray = genes;
 		this.time = time;
 		this.stateID= stateID;
 		int i =0;
@@ -36,17 +50,23 @@ public class ABNState {
 			
 	}
 	
-
-
+	/** Getter Method
+	 * @return geneArray returns the array of Genes		
+	 */	
 	public Gene[] getGenes(){
-		return stateOfGenes;
+		return geneArray;
 	}
 	
+	/** For a given gene apply its update function to this ABNState
+	 * 
+	 * @param geneName		String of gene name whose update function should be applied
+	 * @return successor	A ABNState created by the application of the update function
+	 */
 	public ABNState applyGeneUpdateFunction(String geneName)
 	{
 		UpdateGeneState();
-		boolean[] nextState = boolArray.clone();
-		for(Gene g : stateOfGenes)
+		boolean[] nextState = stateOfGenes.clone();
+		for(Gene g : geneArray)
 		{
 			if(g.getName().equals(geneName))
 			{
@@ -58,20 +78,30 @@ public class ABNState {
 			}
 		}
 
-		ABNState successor = new ABNState(nextState,stateOfGenes, time+1, Counter.counter++);
+		ABNState successor = new ABNState(nextState,geneArray, time+1, Counter.counter++);
 		return successor;
 	}
 	
+	/** Converts the ABNState data to string
+	 * 
+	 * @return result String containing the state id and time created and whether each gene is expressed
+	 */
 	public String toString(){
-		String result =""+stateID+time+"\n";
+		String result =stateID+" "+time+" ";
 		int i =0;
-		for(Gene gene : stateOfGenes)
+		for(Gene gene : geneArray)
 		{
-			result += gene.getName()+","+boolArray[i]+"\n"; 
+			result += gene.getName()+","+stateOfGenes[i]+" "; 
 			i++;
 		}
 		return result;
 	}
+	
+	/** Checks if this ABNState is equal to another
+	 * 
+	 * @param input				
+	 * @return boolean	True if equal false otherwise
+	 */	
 @Override	
 	public boolean equals(Object input){
 	
@@ -79,9 +109,9 @@ public class ABNState {
 			return false;
 		ABNState that =(ABNState) input;
 		int i = 0;
-		for(boolean b: boolArray)
+		for(boolean b: stateOfGenes)
 		{
-			if(b!=that.boolArray[i])
+			if(b!=that.stateOfGenes[i])
 				return false;
 			i++;
 		}
@@ -90,11 +120,15 @@ public class ABNState {
 		
 	}
 
-
+/** Finds the index value of a gene matching a string
+ * 
+ * @param s		String of the gene name to be found
+ * @return i 	int index value of the gene in geneArray
+ */
 	private int findGene(String s)
 	{
 		int i =0;
-		for(Gene g : stateOfGenes)
+		for(Gene g : geneArray)
 		{
 			if(g.getName().equals(s))
 				return i;
@@ -103,12 +137,16 @@ public class ABNState {
 		}
 		return i;
 	}
+	
+	/** Update Gene expressions to match the values in stateOfGenes
+
+	 */
 	public void UpdateGeneState()
 	{
 		int i = 0;
-		for(Gene g : stateOfGenes)
+		for(Gene g : geneArray)
 		{
-			boolean b = boolArray[i];
+			boolean b = stateOfGenes[i];
 			g.setExpressed(b);
 			i++;
 			

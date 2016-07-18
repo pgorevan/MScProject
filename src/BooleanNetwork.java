@@ -1,4 +1,8 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -21,7 +25,6 @@ public class BooleanNetwork {
 		Stack<ABNState> stack = new Stack<ABNState>();
 		stack.push(state);
 		
-		int depth = 0;
 		while(!stack.isEmpty())
 		{	
 			ABNState next = stack.pop();
@@ -45,25 +48,22 @@ public class BooleanNetwork {
 					listStates.add(temp1);
 					}
 				}
-				
-				depth++;
+
 			}
 		
 		}
 		 
-		 System.out.println("End"+listStates.size());
 	}
 	
 	public int checkForSteadyStates(){
-		int number = 0;
 
-		boolean b = true;
+		int number = 0;
 		for(ABNState state : listStates)
 		{
 			state.UpdateGeneState();
 			Gene[] genes = state.getGenes();
 
-			b = true;
+			boolean b = true;
 			for(int i=0; i<genes.length;i++)
 			{
 				Gene temp = genes[i];
@@ -83,6 +83,19 @@ public class BooleanNetwork {
 		}
 		System.out.print("Number of state "+listStates.size());
 		return number;
+	}
+	
+	public void printToFile(String filename) throws FileNotFoundException, UnsupportedEncodingException{
+		PrintWriter writer = new PrintWriter(filename,"UTF-8");
+		Iterator<ABNState> iterator = listStates.iterator();
+		while (iterator.hasNext())
+		{
+			ABNState next = iterator.next();
+			String line = next.toString();
+			writer.println(line);
+		}
+		writer.close();
+		
 	}
 
 }
