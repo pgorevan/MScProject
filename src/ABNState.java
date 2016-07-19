@@ -87,11 +87,13 @@ public class ABNState {
 	 * @return result String containing the state id and time created and whether each gene is expressed
 	 */
 	public String toString(){
-		String result =stateID+" "+time+" ";
+		String result =stateID+","+time;
+
+		
 		int i =0;
 		for(Gene gene : geneArray)
 		{
-			result += gene.getName()+","+stateOfGenes[i]+" "; 
+			result += ","+stateOfGenes[i]; 
 			i++;
 		}
 		return result;

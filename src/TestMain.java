@@ -1,5 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
+
+import graph.*;
 
 public class TestMain {
 
@@ -35,8 +38,26 @@ public class TestMain {
 		}
 		
 		
-
-
+		
+		ParseData pd = new ParseData();
+		Graph graph = pd.readStateFile();
+		System.out.println("Graph Created");
+		Iterator<Vertex> iterator = graph.vertices();
+		while(iterator.hasNext())
+		{
+			Vertex v = iterator.next();
+			Iterator<Vertex> iterator2 = graph.vertices();
+			while(iterator.hasNext())
+			{
+				Vertex v2 = iterator.next();
+				if(v.diffenceIsOne(v2))
+				{
+					graph.addEdge(v, v2);
+				}
+					
+			}
+		}
+		System.out.println("Graph Created");
 		 
 	}
 	
