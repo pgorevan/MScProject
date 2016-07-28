@@ -77,7 +77,7 @@ public class BooleanNetwork {
 			}
 			if(b)
 			{	
-				System.out.println(state.toString2());
+				System.out.println(state.toString());
 				number++;
 			}
 		}
@@ -87,22 +87,18 @@ public class BooleanNetwork {
 	
 	public void printToFile(String filename) throws FileNotFoundException, UnsupportedEncodingException{
 		PrintWriter writer = new PrintWriter(filename,"UTF-8");
-		int i = 1;
-		String geneNames ="ID    ";
+		String geneNames ="";
 		for(Gene g : genes)
 		{
-			String temp = String.format("%-8s", g.getName()) ;
-			geneNames += temp;
+			geneNames += g.getName()+" ";
 		}
 		writer.println(geneNames);
 		Iterator<ABNState> iterator = listStates.iterator();
 		while (iterator.hasNext())
 		{
-			String stateid =String.format("%-6d",i);
 			ABNState next = iterator.next();
-			String line = stateid+next.toString2();
+			String line = next.toString();
 			writer.println(line);
-			i++;
 		}
 		writer.close();
 		
