@@ -28,14 +28,14 @@ public class UpdateFunctionGenerator {
 		int [] ActivatorFunction = UFG(noPossActivators, GeneVariables);	
 		ExpressionNode[] ActivatorHalf = convertToExpressionTree(ActivatorFunction, GeneVariables);
 		// Convert the array to a booelan expression tree
-		activatorTree.createTreeFirst(ActivatorHalf);
+		activatorTree.createTree(ActivatorHalf);
 		}
 		if(!GeneVariables.isEmpty())
 		{
 			// Create a array representing the preorder traversal of the supressor subtree	
 		int [] RepressorFunction = UFG(noPossSupressors, GeneVariables);
 		ExpressionNode[] RepressorHalf = convertToExpressionTree(RepressorFunction, GeneVariables);
-		suppressorTree.createTreeFirst(RepressorHalf);
+		suppressorTree.createTree(RepressorHalf);
 		}
 		//If there activators and no suppressors  update function is the activator tree
 		if(!activatorTree.isEmpty()&&suppressorTree.isEmpty())

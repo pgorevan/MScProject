@@ -6,12 +6,12 @@ public class ExpressionTree {
 	Index myindex = new Index();
 	
 	
-	public ExpressionNode createTreeFirst( ExpressionNode[] preorder)
+	public ExpressionNode createTree( ExpressionNode[] preorder)
 	{
 		root = preorder[0];
 		int noOfNodes = preorder.length; 
 		int index = 0;
-		return CreateTree(preorder,myindex,root);
+		return createTreePrivate(preorder,myindex,root);
 		
 	}
 	 
@@ -58,7 +58,7 @@ public class ExpressionTree {
 		 }
 
 
-	private ExpressionNode CreateTree(ExpressionNode[] preorder,Index pos,ExpressionNode node)
+	private ExpressionNode createTreePrivate(ExpressionNode[] preorder,Index pos,ExpressionNode node)
 	{
 		int i = pos.index;
 		if(i==preorder.length)
@@ -75,17 +75,17 @@ public class ExpressionTree {
 			
 		}else if(preorder[i] instanceof OrNode)
 		{
-			 ((OrNode) temp).setLeftNode(CreateTree(preorder,myindex,temp.leftChild));
-			 ((OrNode) temp).setRightNode(CreateTree(preorder,myindex,temp.rightChild));
+			 ((OrNode) temp).setLeftNode(createTreePrivate(preorder,myindex,temp.leftChild));
+			 ((OrNode) temp).setRightNode(createTreePrivate(preorder,myindex,temp.rightChild));
 		}
 		else if(preorder[i] instanceof AndNode)
 		{
-			((AndNode) temp).setLeftNode(CreateTree(preorder,myindex,temp.leftChild));
-			 ((AndNode) temp).setRightNode(CreateTree(preorder,myindex,temp.rightChild));
+			((AndNode) temp).setLeftNode(createTreePrivate(preorder,myindex,temp.leftChild));
+			 ((AndNode) temp).setRightNode(createTreePrivate(preorder,myindex,temp.rightChild));
 		}
 		else
 		{
-			((NotNode) temp).setNode(CreateTree(preorder,myindex,temp.rightChild));
+			((NotNode) temp).setNode(createTreePrivate(preorder,myindex,temp.rightChild));
 		}
 		
 		

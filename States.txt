@@ -1,161 +1,161 @@
-Gfi1 FOG1 GATA2 GATA1 EKLF Fli1 SCL Cebpa Pu1 cJun EgrNab 
-1,0,false,false,true,false,false,false,false,true,true,false,false
-0,1,true,false,true,false,false,false,false,true,true,false,false
-1,1,false,false,false,false,false,false,false,true,true,false,false
-2,1,false,false,true,false,false,false,false,true,false,false,false
-3,1,false,false,true,false,false,false,false,true,true,true,false
-4,2,true,false,true,false,false,false,false,true,true,true,false
-5,2,false,false,false,false,false,false,false,true,true,true,false
-6,2,false,false,true,false,false,false,false,true,false,true,false
-7,2,false,false,true,false,false,false,false,true,true,true,true
-8,3,false,false,false,false,false,false,false,true,true,true,true
-9,3,false,false,true,false,false,false,false,true,false,true,true
-10,4,false,false,true,true,false,false,false,true,false,true,true
-11,4,false,false,true,false,false,false,false,true,false,false,true
-13,5,false,false,true,true,false,false,false,true,false,false,true
-15,6,false,true,true,true,false,false,false,true,false,false,true
-16,6,false,false,true,true,true,false,false,true,false,false,true
-17,6,false,false,true,true,false,true,false,true,false,false,true
-18,6,false,false,true,true,false,false,true,true,false,false,true
-19,6,false,false,true,true,false,false,false,true,false,false,false
-20,7,true,false,true,true,false,false,false,true,false,false,false
-21,7,false,true,true,true,false,false,false,true,false,false,false
-22,7,false,false,true,true,true,false,false,true,false,false,false
-23,7,false,false,true,true,false,true,false,true,false,false,false
-24,7,false,false,true,true,false,false,true,true,false,false,false
-25,8,true,false,true,true,false,false,true,true,false,false,false
-26,8,false,true,true,true,false,false,true,true,false,false,false
-27,8,false,false,true,true,true,false,true,true,false,false,false
-28,8,false,false,true,true,false,true,true,true,false,false,false
-29,9,true,false,true,true,false,true,true,true,false,false,false
-30,9,false,true,true,true,false,true,true,true,false,false,false
-31,10,true,true,true,true,false,true,true,true,false,false,false
-32,10,false,true,false,true,false,true,true,true,false,false,false
-33,10,false,true,true,true,false,true,true,false,false,false,false
-34,11,false,true,false,true,false,true,true,false,false,false,false
-35,11,true,true,false,true,false,true,true,true,false,false,false
-37,12,true,true,false,true,false,true,true,false,false,false,false
-40,11,true,true,true,true,false,true,true,false,false,false,false
-44,9,true,false,true,true,true,false,true,true,false,false,false
-45,9,false,true,true,true,true,false,true,true,false,false,false
-46,10,true,true,true,true,true,false,true,true,false,false,false
-47,10,false,true,false,true,true,false,true,true,false,false,false
-48,10,false,true,true,true,true,false,true,false,false,false,false
-49,11,false,true,false,true,true,false,true,false,false,false,false
-50,11,true,true,false,true,true,false,true,true,false,false,false
-52,12,true,true,false,true,true,false,true,false,false,false,false
-55,11,true,true,true,true,true,false,true,false,false,false,false
-59,9,true,true,true,true,false,false,true,true,false,false,false
-60,9,false,true,false,true,false,false,true,true,false,false,false
-63,9,false,true,true,true,false,false,true,false,false,false,false
-64,10,false,true,false,true,false,false,true,false,false,false,false
-69,10,true,true,false,true,false,false,true,true,false,false,false
-75,11,true,true,false,true,false,false,true,false,false,false,false
-82,10,true,true,true,true,false,false,true,false,false,false,false
-90,8,true,false,true,true,false,true,false,true,false,false,false
-91,8,false,true,true,true,false,true,false,true,false,false,false
-93,9,true,true,true,true,false,true,false,true,false,false,false
-94,9,false,true,false,true,false,true,false,true,false,false,false
-96,10,true,true,false,true,false,true,false,true,false,false,false
-103,8,true,false,true,true,true,false,false,true,false,false,false
-104,8,false,true,true,true,true,false,false,true,false,false,false
-106,9,true,true,true,true,true,false,false,true,false,false,false
-107,9,false,true,false,true,true,false,false,true,false,false,false
-109,10,true,true,false,true,true,false,false,true,false,false,false
-116,8,true,true,true,true,false,false,false,true,false,false,false
-117,8,false,true,false,true,false,false,false,true,false,false,false
-121,9,true,true,false,true,false,false,false,true,false,false,false
-136,7,false,true,true,true,false,false,true,true,false,false,true
-137,7,false,false,true,true,true,false,true,true,false,false,true
-138,7,false,false,true,true,false,true,true,true,false,false,true
-140,8,false,true,true,true,false,true,true,true,false,false,true
-142,9,false,true,false,true,false,true,true,true,false,false,true
-143,9,false,true,true,true,false,true,true,false,false,false,true
-145,10,false,true,false,true,false,true,true,false,false,false,true
-150,8,false,true,true,true,true,false,true,true,false,false,true
-152,9,false,true,false,true,true,false,true,true,false,false,true
-153,9,false,true,true,true,true,false,true,false,false,false,true
-155,10,false,true,false,true,true,false,true,false,false,false,true
-160,8,false,true,false,true,false,false,true,true,false,false,true
-163,8,false,true,true,true,false,false,true,false,false,false,true
-165,9,false,true,false,true,false,false,true,false,false,false,true
-176,7,false,true,true,true,false,true,false,true,false,false,true
-179,8,false,true,false,true,false,true,false,true,false,false,true
-184,7,false,true,true,true,true,false,false,true,false,false,true
-187,8,false,true,false,true,true,false,false,true,false,false,true
-192,7,false,true,false,true,false,false,false,true,false,false,true
-201,5,false,true,true,true,false,false,false,true,false,true,true
-202,5,false,false,true,true,true,false,false,true,false,true,true
-203,5,false,false,true,true,false,true,false,true,false,true,true
-204,5,false,false,true,true,false,false,true,true,false,true,true
-206,5,false,false,true,true,false,false,false,true,false,true,false
-207,6,true,false,true,true,false,false,false,true,false,true,false
-208,6,false,true,true,true,false,false,false,true,false,true,false
-209,6,false,false,true,true,true,false,false,true,false,true,false
-210,6,false,false,true,true,false,true,false,true,false,true,false
-211,6,false,false,true,true,false,false,true,true,false,true,false
-213,7,true,false,true,true,false,false,true,true,false,true,false
-214,7,false,true,true,true,false,false,true,true,false,true,false
-215,7,false,false,true,true,true,false,true,true,false,true,false
-216,7,false,false,true,true,false,true,true,true,false,true,false
-218,8,true,false,true,true,false,true,true,true,false,true,false
-219,8,false,true,true,true,false,true,true,true,false,true,false
-221,9,true,true,true,true,false,true,true,true,false,true,false
-222,9,false,true,false,true,false,true,true,true,false,true,false
-223,9,false,true,true,true,false,true,true,false,false,true,false
-225,10,false,true,false,true,false,true,true,false,false,true,false
-228,10,true,true,false,true,false,true,true,true,false,true,false
-231,11,true,true,false,true,false,true,true,false,false,true,false
-236,10,true,true,true,true,false,true,true,false,false,true,false
-243,8,true,false,true,true,true,false,true,true,false,true,false
-244,8,false,true,true,true,true,false,true,true,false,true,false
-246,9,true,true,true,true,true,false,true,true,false,true,false
-247,9,false,true,false,true,true,false,true,true,false,true,false
-248,9,false,true,true,true,true,false,true,false,false,true,false
-250,10,false,true,false,true,true,false,true,false,false,true,false
-253,10,true,true,false,true,true,false,true,true,false,true,false
-256,11,true,true,false,true,true,false,true,false,false,true,false
-261,10,true,true,true,true,true,false,true,false,false,true,false
-268,8,true,true,true,true,false,false,true,true,false,true,false
-269,8,false,true,false,true,false,false,true,true,false,true,false
-272,8,false,true,true,true,false,false,true,false,false,true,false
-274,9,false,true,false,true,false,false,true,false,false,true,false
-281,9,true,true,false,true,false,false,true,true,false,true,false
-288,10,true,true,false,true,false,false,true,false,false,true,false
-297,9,true,true,true,true,false,false,true,false,false,true,false
-308,7,true,false,true,true,false,true,false,true,false,true,false
-309,7,false,true,true,true,false,true,false,true,false,true,false
-312,8,true,true,true,true,false,true,false,true,false,true,false
-313,8,false,true,false,true,false,true,false,true,false,true,false
-316,9,true,true,false,true,false,true,false,true,false,true,false
-327,7,true,false,true,true,true,false,false,true,false,true,false
-328,7,false,true,true,true,true,false,false,true,false,true,false
-331,8,true,true,true,true,true,false,false,true,false,true,false
-332,8,false,true,false,true,true,false,false,true,false,true,false
-335,9,true,true,false,true,true,false,false,true,false,true,false
-346,7,true,true,true,true,false,false,false,true,false,true,false
-347,7,false,true,false,true,false,false,false,true,false,true,false
-352,8,true,true,false,true,false,false,false,true,false,true,false
-371,6,false,true,true,true,false,false,true,true,false,true,true
-372,6,false,false,true,true,true,false,true,true,false,true,true
-373,6,false,false,true,true,false,true,true,true,false,true,true
-376,7,false,true,true,true,false,true,true,true,false,true,true
-379,8,false,true,false,true,false,true,true,true,false,true,true
-380,8,false,true,true,true,false,true,true,false,false,true,true
-383,9,false,true,false,true,false,true,true,false,false,true,true
-391,7,false,true,true,true,true,false,true,true,false,true,true
-394,8,false,true,false,true,true,false,true,true,false,true,true
-395,8,false,true,true,true,true,false,true,false,false,true,true
-398,9,false,true,false,true,true,false,true,false,false,true,true
-406,7,false,true,false,true,false,false,true,true,false,true,true
-409,7,false,true,true,true,false,false,true,false,false,true,true
-412,8,false,true,false,true,false,false,true,false,false,true,true
-426,6,false,true,true,true,false,true,false,true,false,true,true
-430,7,false,true,false,true,false,true,false,true,false,true,true
-437,6,false,true,true,true,true,false,false,true,false,true,true
-441,7,false,true,false,true,true,false,false,true,false,true,true
-448,6,false,true,false,true,false,false,false,true,false,true,true
-459,3,true,false,true,false,false,false,false,true,false,true,false
-463,4,true,false,true,false,false,false,false,true,false,false,false
-465,3,true,false,false,false,false,false,false,true,true,true,false
-467,4,true,false,false,false,false,false,false,true,true,false,false
+ID    Gfi1    FOG1    GATA2   GATA1   EKLF    Fli1    SCL     Cebpa   Pu1     cJun    EgrNab  
+1     false     false     true      false     false     false     false     true      true      false     false     
+2     true      false     true      false     false     false     false     true      true      false     false     
+3     false     false     false     false     false     false     false     true      true      false     false     
+4     false     false     true      false     false     false     false     true      false     false     false     
+5     false     false     true      false     false     false     false     true      true      true      false     
+6     true      false     true      false     false     false     false     true      true      true      false     
+7     false     false     false     false     false     false     false     true      true      true      false     
+8     false     false     true      false     false     false     false     true      false     true      false     
+9     false     false     true      false     false     false     false     true      true      true      true      
+10    false     false     false     false     false     false     false     true      true      true      true      
+11    false     false     true      false     false     false     false     true      false     true      true      
+12    false     false     true      true      false     false     false     true      false     true      true      
+13    false     false     true      false     false     false     false     true      false     false     true      
+14    false     false     true      true      false     false     false     true      false     false     true      
+15    false     true      true      true      false     false     false     true      false     false     true      
+16    false     false     true      true      true      false     false     true      false     false     true      
+17    false     false     true      true      false     true      false     true      false     false     true      
+18    false     false     true      true      false     false     true      true      false     false     true      
+19    false     false     true      true      false     false     false     true      false     false     false     
+20    true      false     true      true      false     false     false     true      false     false     false     
+21    false     true      true      true      false     false     false     true      false     false     false     
+22    false     false     true      true      true      false     false     true      false     false     false     
+23    false     false     true      true      false     true      false     true      false     false     false     
+24    false     false     true      true      false     false     true      true      false     false     false     
+25    true      false     true      true      false     false     true      true      false     false     false     
+26    false     true      true      true      false     false     true      true      false     false     false     
+27    false     false     true      true      true      false     true      true      false     false     false     
+28    false     false     true      true      false     true      true      true      false     false     false     
+29    true      false     true      true      false     true      true      true      false     false     false     
+30    false     true      true      true      false     true      true      true      false     false     false     
+31    true      true      true      true      false     true      true      true      false     false     false     
+32    false     true      false     true      false     true      true      true      false     false     false     
+33    false     true      true      true      false     true      true      false     false     false     false     
+34    false     true      false     true      false     true      true      false     false     false     false     
+35    true      true      false     true      false     true      true      true      false     false     false     
+36    true      true      false     true      false     true      true      false     false     false     false     
+37    true      true      true      true      false     true      true      false     false     false     false     
+38    true      false     true      true      true      false     true      true      false     false     false     
+39    false     true      true      true      true      false     true      true      false     false     false     
+40    true      true      true      true      true      false     true      true      false     false     false     
+41    false     true      false     true      true      false     true      true      false     false     false     
+42    false     true      true      true      true      false     true      false     false     false     false     
+43    false     true      false     true      true      false     true      false     false     false     false     
+44    true      true      false     true      true      false     true      true      false     false     false     
+45    true      true      false     true      true      false     true      false     false     false     false     
+46    true      true      true      true      true      false     true      false     false     false     false     
+47    true      true      true      true      false     false     true      true      false     false     false     
+48    false     true      false     true      false     false     true      true      false     false     false     
+49    false     true      true      true      false     false     true      false     false     false     false     
+50    false     true      false     true      false     false     true      false     false     false     false     
+51    true      true      false     true      false     false     true      true      false     false     false     
+52    true      true      false     true      false     false     true      false     false     false     false     
+53    true      true      true      true      false     false     true      false     false     false     false     
+54    true      false     true      true      false     true      false     true      false     false     false     
+55    false     true      true      true      false     true      false     true      false     false     false     
+56    true      true      true      true      false     true      false     true      false     false     false     
+57    false     true      false     true      false     true      false     true      false     false     false     
+58    true      true      false     true      false     true      false     true      false     false     false     
+59    true      false     true      true      true      false     false     true      false     false     false     
+60    false     true      true      true      true      false     false     true      false     false     false     
+61    true      true      true      true      true      false     false     true      false     false     false     
+62    false     true      false     true      true      false     false     true      false     false     false     
+63    true      true      false     true      true      false     false     true      false     false     false     
+64    true      true      true      true      false     false     false     true      false     false     false     
+65    false     true      false     true      false     false     false     true      false     false     false     
+66    true      true      false     true      false     false     false     true      false     false     false     
+67    false     true      true      true      false     false     true      true      false     false     true      
+68    false     false     true      true      true      false     true      true      false     false     true      
+69    false     false     true      true      false     true      true      true      false     false     true      
+70    false     true      true      true      false     true      true      true      false     false     true      
+71    false     true      false     true      false     true      true      true      false     false     true      
+72    false     true      true      true      false     true      true      false     false     false     true      
+73    false     true      false     true      false     true      true      false     false     false     true      
+74    false     true      true      true      true      false     true      true      false     false     true      
+75    false     true      false     true      true      false     true      true      false     false     true      
+76    false     true      true      true      true      false     true      false     false     false     true      
+77    false     true      false     true      true      false     true      false     false     false     true      
+78    false     true      false     true      false     false     true      true      false     false     true      
+79    false     true      true      true      false     false     true      false     false     false     true      
+80    false     true      false     true      false     false     true      false     false     false     true      
+81    false     true      true      true      false     true      false     true      false     false     true      
+82    false     true      false     true      false     true      false     true      false     false     true      
+83    false     true      true      true      true      false     false     true      false     false     true      
+84    false     true      false     true      true      false     false     true      false     false     true      
+85    false     true      false     true      false     false     false     true      false     false     true      
+86    false     true      true      true      false     false     false     true      false     true      true      
+87    false     false     true      true      true      false     false     true      false     true      true      
+88    false     false     true      true      false     true      false     true      false     true      true      
+89    false     false     true      true      false     false     true      true      false     true      true      
+90    false     false     true      true      false     false     false     true      false     true      false     
+91    true      false     true      true      false     false     false     true      false     true      false     
+92    false     true      true      true      false     false     false     true      false     true      false     
+93    false     false     true      true      true      false     false     true      false     true      false     
+94    false     false     true      true      false     true      false     true      false     true      false     
+95    false     false     true      true      false     false     true      true      false     true      false     
+96    true      false     true      true      false     false     true      true      false     true      false     
+97    false     true      true      true      false     false     true      true      false     true      false     
+98    false     false     true      true      true      false     true      true      false     true      false     
+99    false     false     true      true      false     true      true      true      false     true      false     
+100   true      false     true      true      false     true      true      true      false     true      false     
+101   false     true      true      true      false     true      true      true      false     true      false     
+102   true      true      true      true      false     true      true      true      false     true      false     
+103   false     true      false     true      false     true      true      true      false     true      false     
+104   false     true      true      true      false     true      true      false     false     true      false     
+105   false     true      false     true      false     true      true      false     false     true      false     
+106   true      true      false     true      false     true      true      true      false     true      false     
+107   true      true      false     true      false     true      true      false     false     true      false     
+108   true      true      true      true      false     true      true      false     false     true      false     
+109   true      false     true      true      true      false     true      true      false     true      false     
+110   false     true      true      true      true      false     true      true      false     true      false     
+111   true      true      true      true      true      false     true      true      false     true      false     
+112   false     true      false     true      true      false     true      true      false     true      false     
+113   false     true      true      true      true      false     true      false     false     true      false     
+114   false     true      false     true      true      false     true      false     false     true      false     
+115   true      true      false     true      true      false     true      true      false     true      false     
+116   true      true      false     true      true      false     true      false     false     true      false     
+117   true      true      true      true      true      false     true      false     false     true      false     
+118   true      true      true      true      false     false     true      true      false     true      false     
+119   false     true      false     true      false     false     true      true      false     true      false     
+120   false     true      true      true      false     false     true      false     false     true      false     
+121   false     true      false     true      false     false     true      false     false     true      false     
+122   true      true      false     true      false     false     true      true      false     true      false     
+123   true      true      false     true      false     false     true      false     false     true      false     
+124   true      true      true      true      false     false     true      false     false     true      false     
+125   true      false     true      true      false     true      false     true      false     true      false     
+126   false     true      true      true      false     true      false     true      false     true      false     
+127   true      true      true      true      false     true      false     true      false     true      false     
+128   false     true      false     true      false     true      false     true      false     true      false     
+129   true      true      false     true      false     true      false     true      false     true      false     
+130   true      false     true      true      true      false     false     true      false     true      false     
+131   false     true      true      true      true      false     false     true      false     true      false     
+132   true      true      true      true      true      false     false     true      false     true      false     
+133   false     true      false     true      true      false     false     true      false     true      false     
+134   true      true      false     true      true      false     false     true      false     true      false     
+135   true      true      true      true      false     false     false     true      false     true      false     
+136   false     true      false     true      false     false     false     true      false     true      false     
+137   true      true      false     true      false     false     false     true      false     true      false     
+138   false     true      true      true      false     false     true      true      false     true      true      
+139   false     false     true      true      true      false     true      true      false     true      true      
+140   false     false     true      true      false     true      true      true      false     true      true      
+141   false     true      true      true      false     true      true      true      false     true      true      
+142   false     true      false     true      false     true      true      true      false     true      true      
+143   false     true      true      true      false     true      true      false     false     true      true      
+144   false     true      false     true      false     true      true      false     false     true      true      
+145   false     true      true      true      true      false     true      true      false     true      true      
+146   false     true      false     true      true      false     true      true      false     true      true      
+147   false     true      true      true      true      false     true      false     false     true      true      
+148   false     true      false     true      true      false     true      false     false     true      true      
+149   false     true      false     true      false     false     true      true      false     true      true      
+150   false     true      true      true      false     false     true      false     false     true      true      
+151   false     true      false     true      false     false     true      false     false     true      true      
+152   false     true      true      true      false     true      false     true      false     true      true      
+153   false     true      false     true      false     true      false     true      false     true      true      
+154   false     true      true      true      true      false     false     true      false     true      true      
+155   false     true      false     true      true      false     false     true      false     true      true      
+156   false     true      false     true      false     false     false     true      false     true      true      
+157   true      false     true      false     false     false     false     true      false     true      false     
+158   true      false     true      false     false     false     false     true      false     false     false     
+159   true      false     false     false     false     false     false     true      true      true      false     
+160   true      false     false     false     false     false     false     true      true      false     false     

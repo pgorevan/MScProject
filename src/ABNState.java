@@ -98,6 +98,18 @@ public class ABNState {
 		}
 		return result;
 	}
+	public String toString2(){
+		String result ="";
+
+		
+		int i =0;
+		for(Gene gene : geneArray)
+		{
+			result += String.format("%-9s ", stateOfGenes[i]); 
+			i++;
+		}
+		return result;
+	}
 	
 	/** Checks if this ABNState is equal to another
 	 * 

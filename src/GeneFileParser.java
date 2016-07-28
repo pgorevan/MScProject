@@ -57,7 +57,7 @@ public class GeneFileParser {
 				}
 				ExpressionNode[] a = arrayVersion.toArray(new ExpressionNode[arrayVersion.size()]);
 				ExpressionTree t = new ExpressionTree();
-				t.createTreeFirst(a);
+				t.createTree(a);
 	
 				g.setUpdateFunction(t);
 
