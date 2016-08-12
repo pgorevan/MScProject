@@ -9,32 +9,37 @@ public class TestMain {
 	public static void main(String[] args) {
 		
 		
-
-
-		Gene[] genes = GeneFileParser.readGeneInputFile();
-		Gene GATA = genes[9];
-		ExpressionTree function = GATA.getUpdateFunction();
-
+		Gene[] geneData = FileParser.readGeneData("GeneData.csv");
 		
+		for(Gene g : geneData)
+		{
+			
+			ExpressionTree tree = g.getUpdateFunction();
+			tree.toString();
+			System.out.println(g.toString()+"   Update Function: "+tree.print());
+		}
 
-		
-		
-		BooleanNetwork network = new BooleanNetwork(genes);
+//		
+		BooleanNetwork network = new BooleanNetwork(geneData);
 		network.generateStates();
 		int  noSteadystates = network.checkForSteadyStates();
+		
+		Gene[] genes = GeneFileParser.readGeneInputFile();
+		BooleanNetwork network2 = new BooleanNetwork(genes);
+		network2.generateStates();
+		int  noSteadystates2 = network.checkForSteadyStates();
 
 
 	
 		
-		System.out.println("Number of steady states is"+noSteadystates);
+		System.out.println("Number of steady states is"+noSteadystates +" "+noSteadystates2);
 		try {
 			network.printToFile("States.txt");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		}
 		
 		

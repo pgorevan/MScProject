@@ -17,7 +17,6 @@ public class GeneFileParser {
 		try {
 			fr = new FileReader("src/updatefunctions.txt");
 			sc = new Scanner(fr);
-			int indexOfGeneArray = 0;
 			while(sc.hasNextLine())
 			{	
 				arrayVersion = new ArrayList<ExpressionNode>();
@@ -61,7 +60,6 @@ public class GeneFileParser {
 	
 				g.setUpdateFunction(t);
 
-				arrayOfGenes[indexOfGeneArray++]= g;
 
 			}	
 		} catch (FileNotFoundException e) {
