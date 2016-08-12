@@ -17,14 +17,10 @@ public class BooleanNetwork {
 		this.genes = genes;
 		listStates = new ArrayList<ABNState>();
 	}
-	/** Generates all possible states of this Network
-	 */		
+	
 	public void generateStates()
 	{
-		
-		//Create initial state from the gene array created by the gene data file
 		ABNState state = new ABNState(genes,0,1);
-		//Add state to list of states
 		listStates.add(state);
 		Stack<ABNState> stack = new Stack<ABNState>();
 		stack.push(state);
@@ -38,6 +34,7 @@ public class BooleanNetwork {
 			for(int i=0; i<nextGenes.length;i++){
 				next.UpdateGeneState();
 				Gene temp = nextGenes[i];
+				
 				ExpressionTree function = temp.getUpdateFunction();
 				boolean functionresult = function.root.evaluate();
 				boolean geneExpressed = temp.checkExpression();
@@ -46,14 +43,15 @@ public class BooleanNetwork {
 				{
 					ABNState temp1 =next.applyGeneUpdateFunction(temp.getName());
 					boolean stateStored = listStates.contains(temp1);
-	
+					if(!stateStored)
+					{	
 						stack.push(temp1);
 						listStates.add(temp1);
-
+					}
 				}
-				
+
 			}
-			System.out.println("Processed State");
+		
 		}
 		 
 	}
@@ -61,7 +59,6 @@ public class BooleanNetwork {
 	public int checkForSteadyStates(){
 
 		int number = 0;
-		List<ABNState> steadyStates = new ArrayList<ABNState>();
 		for(ABNState state : listStates)
 		{
 			state.UpdateGeneState();
@@ -82,17 +79,7 @@ public class BooleanNetwork {
 			if(b)
 			{	
 				System.out.println(state.toString());
-				Boolean alreadyListed = false;
-				for(ABNState s : steadyStates)
-				{
-					if(s.equals(state))
-						alreadyListed =true;
-				}
-				if(!alreadyListed)
-				{
-					steadyStates.add(state);
-					number++;
-				}	
+				number++;
 			}
 		}
 		System.out.print("Number of state "+listStates.size());

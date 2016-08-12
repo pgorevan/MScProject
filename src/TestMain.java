@@ -11,13 +11,7 @@ public class TestMain {
 		
 		Gene[] geneData = FileParser.readGeneData("GeneData.csv");
 		
-		for(Gene g : geneData)
-		{
-			
-			ExpressionTree tree = g.getUpdateFunction();
-			tree.toString();
-			System.out.println(g.toString()+"   Update Function: "+tree.print());
-		}
+
 
 //		
 		BooleanNetwork network = new BooleanNetwork(geneData);

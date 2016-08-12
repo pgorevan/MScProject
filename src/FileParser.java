@@ -15,8 +15,7 @@ public class FileParser {
 		
 		for(int i= 0; i<geneList.size();i++)
 		{
-			ArrayList<ExpressionNode> arrayVersion;
-			arrayVersion = new ArrayList<ExpressionNode>();
+
 			String geneStr = geneList.get(i);
 			String[] sections;
 			sections = geneStr.split(",");
@@ -26,47 +25,62 @@ public class FileParser {
 			Boolean geneExpressed = Boolean.valueOf(strGeneExpressed);
 			gene.setExpressed(geneExpressed);
 			geneArray[i] = gene;
-			String function = sections[2];
-			String[] parts = function.split(" ");
 			
-			for(String s: parts)
-			{
-				ExpressionNode temp;
-				switch(s)
-				{
-				case "AND":
-					temp = new AndNode(null,null);
-					arrayVersion.add(temp);
-					break;
-				case "OR":
-					temp = new OrNode(null,null);
-					arrayVersion.add(temp);
-					break;
-				case "NOT":
-					temp = new NotNode(null);
-					arrayVersion.add(temp);
-					break;
-				default:
-					Gene geneVar = getOrCreateGene(s,geneArray);
-					temp = new VarNode(geneVar);
-					arrayVersion.add(temp);
-				}
-			
-				
-				
-			}
-			ExpressionNode[] a = arrayVersion.toArray(new ExpressionNode[arrayVersion.size()]);
-			ExpressionTree t = new ExpressionTree();
-			t.createTree(a);
-
-			gene.setUpdateFunction(t);
 			
 		}
-
+		insertUpdateFunctions(geneList,geneArray);
 		return geneArray;
 	}
 	
-	
+	public static void insertUpdateFunctions(List<String> geneList,Gene[] geneArray)
+	{
+
+		for(int i= 0; i<geneList.size();i++)
+		{
+		ArrayList<ExpressionNode> arrayVersion;
+		arrayVersion = new ArrayList<ExpressionNode>();	
+		Gene gene = geneArray[i];	
+		String geneStr = geneList.get(i);
+		String[] sections;
+		sections = geneStr.split(",");	
+		String function = sections[2];
+
+		String[] parts = function.split(" ");
+		
+		for(String s: parts)
+		{
+			ExpressionNode temp;
+			switch(s)
+			{
+			case "AND":
+				temp = new AndNode(null,null);
+				arrayVersion.add(temp);
+				break;
+			case "OR":
+				temp = new OrNode(null,null);
+				arrayVersion.add(temp);
+				break;
+			case "NOT":
+				temp = new NotNode(null);
+				arrayVersion.add(temp);
+				break;
+			default:
+				Gene geneVar = getOrCreateGene(s,geneArray);
+				temp = new VarNode(geneVar);
+				arrayVersion.add(temp);
+			}
+		
+			
+			
+		}
+		ExpressionNode[] a = arrayVersion.toArray(new ExpressionNode[arrayVersion.size()]);
+		ExpressionTree t = new ExpressionTree();
+		t.createTree(a);
+
+		gene.setUpdateFunction(t);
+		System.out.println(gene.getName()+" "+function);
+		}
+	}
 	
 	
 	private static List<String> convertDataFileToArrayList(String fileName)
