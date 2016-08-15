@@ -78,7 +78,7 @@ public class FileParser {
 		t.createTree(a);
 
 		gene.setUpdateFunction(t);
-		System.out.println(gene.getName()+" "+function);
+
 		}
 	}
 	
@@ -91,7 +91,6 @@ public class FileParser {
 		try{
 			fr = new FileReader("src/"+fileName);
 			sc = new Scanner(fr);
-			int index = 0;
 			while (sc.hasNextLine())
 			{
 				String line = sc.nextLine();
@@ -102,7 +101,7 @@ public class FileParser {
 			System.err.println("File not found");
 		}
 		finally{
-			
+
 		}
 		
 		return GeneList;

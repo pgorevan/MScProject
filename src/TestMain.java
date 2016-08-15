@@ -10,23 +10,12 @@ public class TestMain {
 		
 		
 		Gene[] geneData = FileParser.readGeneData("GeneData.csv");
-		
-
-
-//		
+				
 		BooleanNetwork network = new BooleanNetwork(geneData);
 		network.generateStates();
 		int  noSteadystates = network.checkForSteadyStates();
-		
-		Gene[] genes = GeneFileParser.readGeneInputFile();
-		BooleanNetwork network2 = new BooleanNetwork(genes);
-		network2.generateStates();
-		int  noSteadystates2 = network.checkForSteadyStates();
-
-
-	
-		
-		System.out.println("Number of steady states is"+noSteadystates +" "+noSteadystates2);
+					
+		System.out.println("Number of steady states is "+noSteadystates);
 		try {
 			network.printToFile("States.txt");
 		} catch (FileNotFoundException e) {
@@ -39,24 +28,18 @@ public class TestMain {
 		
 		
 		ParseData pd = new ParseData();
-		Graph graph = pd.readStateFile();
-		System.out.println("Graph Created");
-		Iterator<Vertex> iterator = graph.vertices();
-		while(iterator.hasNext())
+		DLLGraph graph = (DLLGraph) pd.readStateFile();
+		graph.createEdges();
+		Iterator<Edge> iter = graph.edges();
+		int count = 0;
+		while(iter.hasNext())
 		{
-			Vertex v = iterator.next();
-			Iterator<Vertex> iterator2 = graph.vertices();
-			while(iterator.hasNext())
-			{
-				Vertex v2 = iterator.next();
-				if(v.diffenceIsOne(v2))
-				{
-					graph.addEdge(v, v2);
-				}
-					
-			}
+			Edge e = iter.next();
+			if(e.getLabel()==3)
+				count++;
+				
 		}
-		System.out.println("Graph Created");
+		System.out.println("Graph Created "+count);
 		 
 	}
 	

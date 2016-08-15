@@ -29,6 +29,11 @@ public class Vertex {
 		return stateid;
 	}
 	
+	public boolean[] getGeneExpresssion()
+	{
+		return geneExpressions;
+	}
+	
 	
 	public boolean equals(Vertex other)
 	{

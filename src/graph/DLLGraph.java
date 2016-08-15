@@ -7,14 +7,20 @@ public class DLLGraph implements Graph {
 	
 	private LinkedList<Vertex> vertices;
 	private LinkedList<Edge> edges;
+	private String[] geneNames;
 	private int size;
 	
 	public DLLGraph(){
 		vertices = new LinkedList<Vertex>();
 		edges = new LinkedList<Edge>();
+		geneNames= null;
+		size = 0;
 	}
 	
-
+	public void setGeneNames(String[] names)
+	{
+		geneNames = names;
+	}
 	@Override
 	public int size() {
 		return size;
@@ -65,9 +71,10 @@ public class DLLGraph implements Graph {
 
 	@Override
 	public Edge addEdge(Vertex v1, Vertex v2, Object attr) {
-		UpdateFunction f = (UpdateFunction) attr;
+		int f = (int) attr;
 		Edge e = new Edge(v1, v2, f);
-		return null;
+		edges.add(e);
+		return e;
 	}
 
 	@Override
@@ -104,6 +111,33 @@ public class DLLGraph implements Graph {
 	public Iterator connectingEdges(Vertex v) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void createEdges()
+	{
+		for (int i= 0; i<geneNames.length; i++)
+		{
+			Iterator<Vertex>  iter = this.vertices();
+			while(iter.hasNext())
+			{
+				Vertex v = iter.next();
+				boolean[] currentState = v.getGeneExpresssion();
+				Iterator<Vertex>  iter2 = this.vertices();
+				while(iter2.hasNext())
+				{
+					Vertex v2 = iter2.next();
+					boolean[] nextState = v2.getGeneExpresssion();
+					if(currentState[i]!=nextState[i] &&v.diffenceIsOne(v2)&&!this.containsEdge(v, v2))
+					{
+
+						this.addEdge(v, v2, i);
+					}
+					
+					
+				}
+				
+			}
+		}
 	}
 
 }

@@ -82,7 +82,7 @@ public class BooleanNetwork {
 				number++;
 			}
 		}
-		System.out.print("Number of state "+listStates.size());
+		System.out.println("Number of states "+listStates.size());
 		return number;
 	}
 	

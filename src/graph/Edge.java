@@ -4,19 +4,20 @@ public class Edge {
 	
 	private Vertex v1;
 	private Vertex v2;
-	private UpdateFunction function;
+
+	private int geneIndex;
 	
 	public Edge(Vertex one, Vertex two){
 		v1 = one;
 		v2 = two;
-		function = null;
+
 	}
 	
-	public Edge(Vertex one, Vertex two, UpdateFunction f)
+	public Edge(Vertex one, Vertex two, int i)
 	{
 		v1 = one;
 		v2 = two;
-		function = f;
+		geneIndex = i;
 	}
 	
 	public Vertex getVertexOne(){
@@ -24,6 +25,10 @@ public class Edge {
 	}
 	public Vertex getVertexTwo(){
 		return v2;
+	}
+	public int getLabel()
+	{
+		return geneIndex;
 	}
 	
 	

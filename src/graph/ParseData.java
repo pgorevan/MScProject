@@ -8,7 +8,7 @@ public class ParseData {
 	
 	public static Graph readStateFile()
 	{
-		Graph graph = new DLLGraph();
+		DLLGraph graph = new DLLGraph();
 		
 		try {
 			FileReader fr = new FileReader("States.txt");
@@ -18,6 +18,7 @@ public class ParseData {
 			{
 				String genes = sc.nextLine();
 				geneNameArray = genes.split(" ");
+				graph.setGeneNames(geneNameArray);
 				
 			}
 			int count = 0;
