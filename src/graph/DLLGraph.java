@@ -25,6 +25,9 @@ public class DLLGraph implements Graph {
 	public int size() {
 		return size;
 	}
+	public String[] getGeneNames(){
+		return geneNames;
+	}
 
 	@Override
 	public int degree(Vertex v) {

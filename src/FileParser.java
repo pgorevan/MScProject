@@ -2,8 +2,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class FileParser {
 	
@@ -150,7 +153,39 @@ public class FileParser {
 		
 	}
 	
-	
+	public static Set<Gene> readGeneNameFile(){
+		
+		Set<Gene> setOfGenes = new HashSet<Gene>();
+
+
+			FileReader fr;
+			try {
+				fr = new FileReader("listOfGeneNames.txt");
+				Scanner sc = new Scanner(fr);
+				int indexOfArray = 0;
+				String[] sections;
+				Random r = new Random();
+				while(sc.hasNextLine())
+				{	
+
+					String geneName = sc.nextLine();
+
+					Gene g = new Gene(geneName, r.nextBoolean());
+					setOfGenes.add(g);
+				}
+				fr.close();
+				sc.close();
+			} catch ( IOException e) {
+				
+				System.out.println("Could not read list of gene names.");
+			}
+
+			return setOfGenes;
+			
+		}
+
+		
+
 	
 
 }

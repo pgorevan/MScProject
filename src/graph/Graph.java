@@ -18,15 +18,7 @@ public interface Graph<E,A> {
 	public Iterator<Vertex> vertices();
 	public Iterator<Edge> edges();
 	public Iterator<Vertex> neighbours(Vertex v);
-	public Iterator<Edge> connectingEdges(Vertex v);
-	
-	
-	
-	
-	
-	
-	
-	
+	public Iterator<Edge> connectingEdges(Vertex v);	
 	
 	
 

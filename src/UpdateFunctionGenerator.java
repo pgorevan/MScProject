@@ -27,7 +27,7 @@ public class UpdateFunctionGenerator {
 		// Create a array representing the preorder traversal of the activator subtree
 		int [] ActivatorFunction = UFG(noPossActivators, GeneVariables);	
 		ExpressionNode[] ActivatorHalf = convertToExpressionTree(ActivatorFunction, GeneVariables);
-		// Convert the array to a booelan expression tree
+		// Convert the array to a boolean expression tree
 		activatorTree.createTree(ActivatorHalf);
 		}
 		if(!GeneVariables.isEmpty())

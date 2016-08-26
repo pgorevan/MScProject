@@ -51,7 +51,7 @@ public class ABNState {
 	}
 	
 	/** Getter Method
-	 * @return geneArray returns the array of Genes		
+	 * @return geneArray array of Gene objects		
 	 */	
 	public Gene[] getGenes(){
 		return geneArray;
@@ -113,7 +113,7 @@ public class ABNState {
 	
 	/** Checks if this ABNState is equal to another
 	 * 
-	 * @param input				
+	 * @param input		ABNState object		
 	 * @return boolean	True if equal false otherwise
 	 */	
 @Override	
