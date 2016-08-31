@@ -1,25 +1,39 @@
+/** Models a boolean function as a binary tree. Leaf node are variables 
+ * non-leaf nodes operators
+ *
+ */
 import java.util.Iterator;
 import java.util.Stack;
 
+
+/** Constructor
+*/
 public class ExpressionTree {
 	ExpressionNode root;
 	Index myindex = new Index();
 	
-	
+	/** Converts a boolean function in the form a preordered array of ExpressionNodes,
+	 *  each of which is either a variable or an operator, to a usable expressionTree
+	 *  @param ExpressionNode[] 
+	 *  @return ExpressionNode  The root of the ExpressionTree 
+
+	 */
 	public ExpressionNode createTree( ExpressionNode[] preorder)
 	{
 		root = preorder[0];
-		int noOfNodes = preorder.length; 
-		int index = 0;
+		//Call recursive function the creates the entire tree;
 		return createTreePrivate(preorder,myindex,root);
 		
 	}
-	 
+	/** Checks if the tree is empty
+	 */ 
 	public boolean isEmpty(){
 		return root==null;
 		
 	}
-	
+	/** 
+	 *@return String	The boolean function as a String
+	 */
 	public String print(){
 		String str = "";
 		String  result = inOrderIter(root,str);
@@ -56,16 +70,24 @@ public class ExpressionTree {
 		  }
 		return output;  
 		 }
-
+	/** Recursive function that sets the child nodes (where applicable) of each node in 
+	 *  the tree starting at the root
+	 * @param preorder	    An array of ExpressionNodes representing a boolean function
+	 * @param pos			Current position in the array
+	 * @param node			ExpressionNode 	
+	 */	
 
 	private ExpressionNode createTreePrivate(ExpressionNode[] preorder,Index pos,ExpressionNode node)
 	{
 		int i = pos.index;
+		// Check if the end of the array has been reached if so finish
 		if(i==preorder.length)
 			return null;
-		
+		// Get the next expression node
 		ExpressionNode temp = preorder[i];
+		// Increment the index so it points to the next node
 		pos.index++;
+		// If instance of a VarNode then it will have no child nodes
 		if(temp instanceof VarNode)
 		{
 			  temp = (VarNode) temp;
@@ -75,27 +97,23 @@ public class ExpressionTree {
 			
 		}else if(preorder[i] instanceof OrNode)
 		{
+			// Set left and right child of this OrNode
 			 ((OrNode) temp).setLeftNode(createTreePrivate(preorder,myindex,temp.leftChild));
 			 ((OrNode) temp).setRightNode(createTreePrivate(preorder,myindex,temp.rightChild));
 		}
 		else if(preorder[i] instanceof AndNode)
 		{
-			((AndNode) temp).setLeftNode(createTreePrivate(preorder,myindex,temp.leftChild));
+			// Set left and right child of this AndNode
+			 ((AndNode) temp).setLeftNode(createTreePrivate(preorder,myindex,temp.leftChild));
 			 ((AndNode) temp).setRightNode(createTreePrivate(preorder,myindex,temp.rightChild));
 		}
 		else
 		{
+			//Since this is NotNode it only has one child node 
 			((NotNode) temp).setNode(createTreePrivate(preorder,myindex,temp.rightChild));
 		}
-		
-		
-			
+				
 		return temp;
-		
-
-	
-		
-		
 
 	}
 	
@@ -103,7 +121,7 @@ public class ExpressionTree {
 		return new UDFIterator();
 		
 	}
-	class UDFIterator implements Iterator<ExpressionNode>{
+	private class UDFIterator implements Iterator<ExpressionNode>{
 		Stack<ExpressionNode> stack;
 		
 		public UDFIterator()

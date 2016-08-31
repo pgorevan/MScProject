@@ -13,28 +13,29 @@ public class UpdateFunctionGenerator {
 	 * 
 	 * @param noPossActivators		The number of possible activator genes the function can use
 	 * @param noPossSupressors		The number of possible suppressor genes the function can use
+	 * @param geneVariables		The number of possible suppressor genes the function can use 
 	 * @return updateFunction		Binary tree representing a boolean function of the form suppressors AND NOT (activators)
 	 */
-	public static ExpressionTree createUpdateFunction(int noPossActivators, int noPossSupressors,Set<Gene> GeneVariables){
+	public static ExpressionTree createUpdateFunction(int noPossActivators, int noPossSupressors,Set<Gene> geneVariables){
 		
 		
 		ExpressionTree updateFunction = new ExpressionTree(); // final update function
 		ExpressionTree activatorTree = new ExpressionTree(); // activator half of the function
 		ExpressionTree suppressorTree = new ExpressionTree(); // suppressor half of the function
 		
-		if(!GeneVariables.isEmpty())
+		if(!geneVariables.isEmpty())
 		{
 		// Create a array representing the preorder traversal of the activator subtree
-		int [] ActivatorFunction = UFG(noPossActivators, GeneVariables);	
-		ExpressionNode[] ActivatorHalf = convertToExpressionTree(ActivatorFunction, GeneVariables);
+		int [] ActivatorFunction = UFG(noPossActivators, geneVariables);	
+		ExpressionNode[] ActivatorHalf = convertToExpressionTree(ActivatorFunction, geneVariables);
 		// Convert the array to a boolean expression tree
 		activatorTree.createTree(ActivatorHalf);
 		}
-		if(!GeneVariables.isEmpty())
+		if(!geneVariables.isEmpty())
 		{
 			// Create a array representing the preorder traversal of the supressor subtree	
-		int [] RepressorFunction = UFG(noPossSupressors, GeneVariables);
-		ExpressionNode[] RepressorHalf = convertToExpressionTree(RepressorFunction, GeneVariables);
+		int [] RepressorFunction = UFG(noPossSupressors, geneVariables);
+		ExpressionNode[] RepressorHalf = convertToExpressionTree(RepressorFunction, geneVariables);
 		suppressorTree.createTree(RepressorHalf);
 		}
 		//If there activators and no suppressors  update function is the activator tree
